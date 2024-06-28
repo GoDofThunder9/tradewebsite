@@ -1,3 +1,89 @@
+/* Form container styling */
+#stockForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    display: block;
+    margin: auto;
+    text-align: center;
+    height: 400px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Form heading styling */
+#stockForm h2 {
+    margin-bottom: 20px;
+    color: #5a5a5a; /* Grey color */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Label styling */
+#stockForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #5a5a5a; /* Grey color */
+}
+
+/* Input and select styling */
+#stockForm input[type="text"],
+#stockForm input[type="email"],
+#stockForm select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+#stockForm input[type="text"]:focus,
+#stockForm input[type="email"]:focus,
+#stockForm select:focus {
+    border-color: #5a5a5a; /* Grey color */
+}
+
+/* Submit button styling */
+#stockForm input[type="submit"] {
+    background-color: #5a5a5a; /* Grey color */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#stockForm input[type="submit"]:hover {
+    background-color: #494949; /* Darker grey color */
+    transform: translateY(-2px);
+}
+
+#stockForm input[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Icon styling */
+.form-icon {
+    margin-right: 5px;
+}
+
+/* Keyframe animation for form */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 .box
 {
@@ -60,4 +146,79 @@
 .text{
     display: block;
     z-index: 2;
+}
+#stock-container {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+#stock-container .container {
+    display: flex;
+    width: 1100px;
+    max-width: 100%;    
+}
+
+#stock-container .box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    overflow-y: scroll;
+    height: 400px;
+}
+
+#stock-container .box h2 {
+    margin-top: 0;
+    color: #4a90e2;
+    text-align: center;
+}
+
+#stock-container .stock {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+#stock-container .stock:last-child {
+    border-bottom: none;
+}
+
+#stock-container .stock-name {
+    font-weight: bold;
+}
+
+#stock-container .stock-price {
+    color: #4a90e2;
+}
+
+#stock-container .stock-change {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+#stock-container .stock-change .fa-arrow-up {
+    color: #28a745;
+    margin-right: 5px;
+}
+
+#stock-container .stock-change .fa-arrow-down {
+    color: #dc3545;
+    margin-right: 5px;
+}
+
+#stock-container .gainers .stock-change {
+    color: #28a745;
+}
+
+#stock-container .losers .stock-change {
+    color: #dc3545;
 }

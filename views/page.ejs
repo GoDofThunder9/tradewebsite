@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Blog Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .content-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-title {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .content-body {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar ul li a:hover {
+            color: #ffcc00;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .content {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><i class="fas fa-book"></i> Blog</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h2>Table of Contents</h2>
+            <ul id="toc">
+                <li><a href="#" data-topic="WhatIsAccounting">What Is Accounting?</a></li>
+                <li><a href="#" data-topic="PurposeOfAccounting">What Is the Purpose of Accounting?</a></li>
+                <li><a href="#" data-topic="HistoryOfAccounting">History of Accounting</a></li>
+                <li><a href="#" data-topic="TypesOfAccounting">Types of Accounting</a></li>
+                <li><a href="#" data-topic="CareersInAccounting">What Types of Careers Are in the Accounting Field?</a></li>
+                <li><a href="#" data-topic="MajorAccountingSoftware">What Are Major Accounting Software Platforms?</a></li>
+                <li><a href="#" data-topic="WhyAccountingImportant">Why Accounting Is Important</a></li>
+                <li><a href="#" data-topic="ExampleOfAccounting">Example of Accounting</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <div class="content-container">
+                <div class="content-title" id="content-title">Welcome to the Blog</div>
+                <div class="content-body" id="content-body">
+                    <p>Click on a topic from the sidebar to see the content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            "WhatIsAccounting": `
+                <p>Accounting is the process of recording financial transactions pertaining to a business. The accounting process includes summarizing, analyzing, and reporting these transactions to oversight agencies, regulators, and tax collection entities. The financial statements used in accounting are a concise summary of financial transactions over an accounting period, summarizing a company's operations, financial position, and cash flows.</p>
+            `,
+            "PurposeOfAccounting": `
+                <p>Accounting is one of the key functions of almost any business. A bookkeeper or an accountant may handle it at a small firm. At larger companies, there might be sizable finance departments guided by a unified accounting manual with dozens of employees. The reports generated by various streams of accounting, such as cost accounting and managerial accounting, are invaluable in helping management make informed business decisions.</p>
+            `,
+            "HistoryOfAccounting": `
+                <p>The history of accounting has been around almost as long as money itself. Accounting history dates back to ancient civilizations in Mesopotamia, Egypt, and Babylon. For example, during the Roman Empire, the government had detailed records of its finances.</p>
+            `,
+            "TypesOfAccounting": `
+                <p>Financial accounting refers to the processes used to generate interim and annual financial statements. The results of all financial transactions that occur during an accounting period are summarized in the balance sheet, income statement, and cash flow statement. The financial statements of most companies are audited annually by an external CPA firm.</p>
+            `,
+            "CareersInAccounting": `
+                <p>While basic accounting functions can be handled by a bookkeeper, advanced accounting is typically handled by qualified accountants who possess designations such as Certified Public Accountant (CPA) or Certified Management Accountant (CMA) in the United States.</p>
+            `,
+            "MajorAccountingSoftware": `
+                <p>Accountants often leverage software to aid in their work. Some accounting software is considered better for small businesses such as QuickBooks, Quicken, FreshBooks, Xero, SlickPie, or Sage 50. Larger companies often have much more complex solutions to integrate with their specific reporting needs. This includes add-on modules or in-home software solutions. Large accounting solutions include Oracle, NetSuite, or Sage products.</p>
+            `,
+            "WhyAccountingImportant": `
+                <p>Accounting is necessary for company growth. Without insight into how a business is performing, it is impossible for a company to make smart financial decisions through forecasting. Without accounting, a company wouldn't be able to tell which products are its best sellers, how much profit is made in each department, and what overhead costs are holding back profits.</p>
+            `,
+            "ExampleOfAccounting": `
+                <p>To illustrate double-entry accounting, imagine a business sends an invoice to one of its clients. An accountant using the double-entry method records a debit to accounts receivables, which flows through to the balance sheet, and a credit to sales revenue, which flows through to the income statement.</p>
+            `
+        };
+
+        document.querySelectorAll('#toc a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const topic = this.getAttribute('data-topic');
+                document.getElementById('content-title').innerText = this.innerText;
+                document.getElementById('content-body').innerHTML = content[topic];
+            });
+        });
+    </script>
+</body>
+</html>
