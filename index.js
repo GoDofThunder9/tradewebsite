@@ -92,14 +92,14 @@ app.post('/Join-us', async (req, res) => {
       port: 587,
       secure: false, // Use `true` for port 465, `false` for all other ports
       auth: {
-        user: 'rishupatil0807@gmail.com',
-        pass: 'nrsa axlo ojuz scqv'
+        user: 'tiwariraj1202@gmail.com',
+        pass: 'zdqg lffy tehm bspj'
       },
     });
 
     // Send mail with defined transport object
     const info = await transporter.sendMail({
-      from: '21bit048@ietdavv.edu.in',
+      from: 'tiwariraj1202@gmail.com',
       to: form.Username,
       subject: 'Welcome To Stock',
       text: 'Thank you for choosing to be a part of our community at Stock-O-Learn! We are delighted to welcome you aboard. Your decision to join us means a lot, and we are excited about the journey ahead. Feel free to explore the features and offerings on our platform. If you have any questions or need assistance, our team is here to help. Once again, thank you for joining us—we look forward to providing you with a valuable and enjoyable experience. Best regards Stock-O-Learn Team'
@@ -108,7 +108,7 @@ app.post('/Join-us', async (req, res) => {
     console.log("Message sent: %s", info.messageId);
     
     // Send response to the client
-    return res.render("trade");
+    return res.redirect('/');
 
   } catch (error) {
     console.error('Error occurred:', error);
