@@ -76,10 +76,10 @@
       <div id="carouselExampleAutoplaying" data-bs-interval="3000" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="./images/2casorol.jpg" class="d-block w-100" alt="...">
+            <img src="./images/1casarol.jpg" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="./images/1casarol.jpg" class="d-block w-100" alt="...">
+            <img src="./images/2casorol.jpg" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
             <img src="./images/3casorol.jpg" class="d-block w-100" alt="...">
@@ -95,7 +95,6 @@
         </button>
       </div>
       <section id="section">
-        <!-- TradingView Widget BEGIN -->
         <marquee behavior="slide" scrollamount="10px" height="70px" >
       <div class="tradingview-widget-container">
         <div class="tradingview-widget-container__widget"></div>
@@ -142,11 +141,15 @@
         <div class="container">
             <div class="box gainers">
                 <h2><i class="fas fa-arrow-up"></i> Top Gainers</h2>
-                <div class="stock">
-                    <div class="stock-name">Stock A</div>
-                    <div class="stock-change"><i class="fas fa-arrow-up"></i> 5.67%</div>
-                    <div class="stock-price">$150.00</div>
-                </div>
+                   <%for(u of gainer)
+                {%>
+                  <div class="stock">
+                    <div class="stock-name"><%= u.ticker %></div>
+                    <div class="stock-change"><i class="fas fa-arrow-up"></i> <%= u.change_percentage %></div>
+                    <div class="stock-price"><%= u.price %></div>
+                  </div>
+                    <%}
+                    %>
                 <!-- Add more stock items as needed -->
             </div>
             <form id="stockForm" action="/stock" method="get">
@@ -170,11 +173,15 @@
             <div id="volume"></div>
             <div class="box losers">
                 <h2><i class="fas fa-arrow-down"></i> Top Losers</h2>
-                <div class="stock">
-                    <div class="stock-name">Stock B</div>
-                    <div class="stock-change"><i class="fas fa-arrow-down"></i> -4.32%</div>
-                    <div class="stock-price">$120.00</div>
-                </div>
+                <%for(u of loser)
+                {%>
+                  <div class="stock">
+                    <div class="stock-name"><%= u.ticker %></div>
+                    <div class="stock-change"><i class="fas fa-arrow-down"></i> <%= u.change_percentage %></div>
+                    <div class="stock-price"><%= u.price %></div>
+                  </div>
+                    <%}
+                    %>
                 <!-- Add more stock items as needed -->
             </div>
         </div>

@@ -8,6 +8,8 @@ const app = express();
 const Form = require('./models/Form');
 const nodemailer = require('nodemailer');
 const axios = require('axios');
+const { time } = require('console');
+const { render } = require('ejs');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded());
@@ -30,7 +32,15 @@ instance.orders.create(options, function(err, order) {
 
 app.get('/', async function(req, res) {
     try {
+      const apiKey = 'D58OB1FVC4P4X5B4'; // Replace with your own API key
+      const url3 = `https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=${apiKey}`;
+      const response3 = await axios.get(url3);
+      const gainer = response3.data["top_gainers"];
+      const loser = response3.data["top_losers"];
+      console.log(response3.status);
         return res.render('trade', {
+            gainer: gainer,
+            loser: loser,
         });
     } catch (err) {
         console.error("Error in fetching data from the database:", err);
@@ -43,12 +53,25 @@ app.get('/stock', async (req, res) => {
     const interval = req.query.interval;
     const apiKey = 'D58OB1FVC4P4X5B4'; // Replace with your own API key
     const url = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=${interval}&apikey=${apiKey}`;
+    const url1 = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${symbol}&apikey=${apiKey}`
     const response = await axios.get(url);
+    const response1 = await axios.get(url1);
     console.log(response.status);
-    return res.render('stock_data', {});
+    console.log(response1.status);
+    const lastrefreshed = response.data["Meta Data"]["3. Last Refreshed"];
+    const timestamp = response.data[`Time Series (${interval})`];
+    const value = timestamp[lastrefreshed];
+    const description = response1.data["Description"];
+    const Symbol = response1.data["Symbol"];
+    return res.render('stock_data', {stockData: response.data,
+      lastrefresh: lastrefreshed,
+      values: value,
+      Description: description,
+      symbol:Symbol,
+    });
   } catch (error) {
     console.error('Error fetching data:', error);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Please use correct name for the data ');
   }
 });
 app.post('/Join-us', async (req, res) => {
